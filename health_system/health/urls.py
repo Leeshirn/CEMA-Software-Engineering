@@ -2,8 +2,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import (
     dashboard, client_list, client_detail,
-    client_create, program_list,
-    ClientViewSet, HealthProgramViewSet
+    client_create, program_list, program_create, client_edit, ClientViewSet, HealthProgramViewSet
 )
 
 router = DefaultRouter()
@@ -18,6 +17,10 @@ urlpatterns = [
     path('clients/create/', client_create, name='client_create'),
     path('clients/<int:pk>/', client_detail, name='client_detail'),
     path('programs/', program_list, name='program_list'),
+    path('programs/create/', program_create, name='program_create'),
+    path('clients/<int:pk>/edit/', client_edit, name='client_edit'),
+
+
 
     #add API routes
     path('api/', include(router.urls)),
