@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}
+
+<div class="container">
+    <h2 class="mb-4">Welcome to the Doctor Dashboard</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <a href="{% url 'client_list' %}" class="btn btn-outline-primary w-100 mb-3">📋 View Clients</a>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'client_create' %}" class="btn btn-outline-success w-100 mb-3">➕ Register New Client</a>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'program_list' %}" class="btn btn-outline-info w-100 mb-3">📚 View Health Programs</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
