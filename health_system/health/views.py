@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.db.models import Q
 from rest_framework import viewsets
 from .models import Client, HealthProgram
 from .serializers import ClientSerializer, HealthProgramSerializer
@@ -16,7 +17,15 @@ def dashboard(request):
     return render(request, 'dashboard.html', {'dashboard': dashboard})
 
 def client_list(request):
-    clients = Client.objects.all()
+    query = request.GET.get('q')
+    if query:
+        clients = Client.objects.filter(
+            Q(first_name__icontains=query) |
+            Q(last_name__icontains=query) |
+            Q(email__icontains=query)
+        )
+    else:
+        clients = Client.objects.all()
     return render(request, 'client_list.html', {'clients': clients})
 
 def client_detail(request, pk):
@@ -46,7 +55,11 @@ def client_create(request):
     return render(request, 'client_form.html', {'form': form})
 
 def program_list(request):
-    programs = HealthProgram.objects.all()
+    query = request.GET.get('q')
+    if query:
+        programs = HealthProgram.objects.filter(name__icontains=query)
+    else:
+        programs = HealthProgram.objects.all()
     return render(request, 'program_list.html', {'programs': programs})
 
 def program_create(request):
@@ -58,3 +71,4 @@ def program_create(request):
     else:
         form = HealthProgramForm()
     return render(request, 'program_form.html', {'form': form})
+
