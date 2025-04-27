@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <div class="container-fluid bg-primary text-white py-5" style="background-image: url('https://source.unsplash.com/1600x900/?health'); background-size: cover; background-position: center;">
+        <div class="row justify-content-center align-items-center text-center">
+            <div class="col-md-8 col-lg-6">
+                <h1 class="display-4 fw-bold mb-3">Welcome to Wellnest</h1>
+                <p class="lead mb-4">A simple solution to manage health programs and client registrations. Tailored for healthcare professionals and their clients.</p>
+                
+                <!-- Call to Action Buttons -->
+                <div class="d-flex justify-content-center">
+                    <a href="{% url 'doctor_register' %}" class="btn btn-light mx-3 px-4 py-2 fw-bold">Doctor Registration</a>
+                    <a href="{% url 'doctor_login' %}" class="btn btn-dark mx-3 px-4 py-2 fw-bold">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div class="container my-5 text-center">
+        <h2 class="fw-bold">What We Do</h2>
+        <p class="lead">Wellnest is a basic health information system designed to assist healthcare professionals in creating health programs, registering clients, enrolling clients into programs, and managing their profiles. Our goal is to help you deliver better health services with ease.</p>
+    </div>
+
+    <!-- Features Section -->
+    <div class="container text-center my-5">
+        <div class="row">
+            <!-- Feature 1: Health Program Creation -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm border-light">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Create Health Programs</h5>
+                        <p class="card-text">Easily create health programs for various conditions, such as TB, Malaria, and HIV, and manage them effectively.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!--  Client Registration -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm border-light">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Register Clients</h5>
+                        <p class="card-text">Register clients to the system and maintain their health records for easy program enrollment.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Client Enrollment -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm border-light">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Client Enrollment</h5>
+                        <p class="card-text">Enroll clients in one or more health programs to improve their health outcomes and track progress.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
