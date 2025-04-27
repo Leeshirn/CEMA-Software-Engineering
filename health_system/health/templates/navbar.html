@@ -1,21 +1,35 @@
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg"> 
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'dashboard' %}">WellNest</a>
+        <a class="navbar-brand" href="{% url 'home' %}">WellNest</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav me-auto">  <!-- This is to align Clients and Programs to the left -->
+                {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'client_list' %}">Clients</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'client_create' %}">Register Client</a>
-                </li>
+                
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'program_list' %}">Programs</a>
                 </li>
-                
+                {% endif %}
+            </ul>
+            
+            <ul class="navbar-nav ms-auto">  <!-- This is to align Logout to the right -->
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'doctor_logout' %}">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'doctor_register' %}active{% endif %}" href="{% url 'doctor_register' %}">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'doctor_login' %}active{% endif %}" href="{% url 'doctor_login' %}">Login</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
     </div>

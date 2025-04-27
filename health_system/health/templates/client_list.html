@@ -2,48 +2,61 @@
 
 {% block content %}
 <div class="container">
-    <h2 class="mb-4">Registered Clients</h2>
-    <form method="get" class="mb-3 d-flex" role="search">
-        <input type="text" name="q" class="form-control me-2" placeholder="Search clients..." value="{{ query|default:'' }}">
-        <button type="submit" class="btn btn-outline-primary">Search</button>
+    <h2 class="mb-4 text-center">Registered Clients</h2>
+    
+    <!-- Search Form -->
+    <form method="get" class="mb-4 d-flex justify-content-between align-items-center" role="search">
+        <div class="d-flex">
+            <a href="{% url 'client_create' %}" class="btn btn-primary">
+                ➕ Create New Client
+            </a>
+        </div>
+        
+        <!-- Search Input -->
+        <div class="d-flex">
+            <input type="text" name="q" class="form-control me-2" placeholder="Search clients..." value="{{ query|default:'' }}">
+            <button type="submit" class="btn btn-outline-primary">Search</button>
+        </div>
     </form>
     
-    <table class="table table-hover table-bordered bg-white">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Date of Birth</th>
-                <th>Programs</th>
-                <th>View</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for client in clients %}
-            <tr>
-                <td>{{ forloop.counter }}</td>
-                <td>{{ client.first_name }} {{ client.last_name }}</td>
-                <td>{{ client.email }}</td>
-                <td>{{ client.date_of_birth }}</td>
-                <td>
-                    {% for program in client.programs.all %}
-                        <span class="badge bg-info text-dark">{{ program.name }}</span>
-                    {% empty %}
-                        <span class="text-muted">None</span>
-                    {% endfor %}
-                </td>
-                <td>
-                    <a href="{% url 'client_detail' client.pk %}" class="btn btn-sm btn-primary">View</a>
-                </td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="6" class="text-center text-muted">No clients found.</td>
-            </tr>
-            
-            {% endfor %}
-        </tbody>
-    </table>
+    <!-- Clients Table -->
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered bg-white">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Date of Birth</th>
+                    <th>Programs</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for client in clients %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ client.first_name }} {{ client.last_name }}</td>
+                    <td>{{ client.email }}</td>
+                    <td>{{ client.date_of_birth }}</td>
+                    <td>
+                        {% for program in client.programs.all %}
+                            <span class="badge bg-info text-dark">{{ program.name }}</span>
+                        {% empty %}
+                            <span class="text-muted">None</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a href="{% url 'client_detail' client.pk %}" class="btn btn-sm btn-primary">View</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="text-center text-muted">No clients found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endblock %}
