@@ -1,18 +1,47 @@
 {% extends "base.html" %}
-{% block content %}
 
-<div class="container">
-    <h2 class="mb-4">Welcome to the Doctor Dashboard</h2>
-    <div class="row">
-        <div class="col-md-4">
-            <a href="{% url 'client_list' %}" class="btn btn-outline-primary w-100 mb-3">📋 View Clients</a>
+{% block content %}
+<!-- Container to wrap the dashboard -->
+<div class="container py-5">
+    <h2 class="mb-4 text-center text-primary">Welcome to Your Dashboard, Dr. {{ doctor_profile.get_full_name }}</h2>
+    
+    <!-- Cards Section: Consistent Card Design -->
+    <div class="row text-center">
+
+        <!-- Card for Doctor's Information -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-lg border-primary">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">Your Profile</h5>
+                    <p class="card-text"><strong>Department:</strong> {{ doctor_profile.department }}</p>
+                    <p class="card-text"><strong>Full Name:</strong> Dr. {{ doctor_profile.get_full_name }}</p>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-            <a href="{% url 'client_create' %}" class="btn btn-outline-success w-100 mb-3">➕ Register New Client</a>
+
+        <!-- Card for Managing Clients -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-lg border-success">
+                <div class="card-body">
+                    <h5 class="card-title text-success">Manage Clients</h5>
+                    <a href="{% url 'client_list' %}" class="btn btn-outline-primary w-100 mb-2">📋 View Clients</a>
+                    <a href="{% url 'client_create' %}" class="btn btn-outline-success w-100">➕ Register New Client</a>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-            <a href="{% url 'program_list' %}" class="btn btn-outline-info w-100 mb-3">📚 View Health Programs</a>
+
+        <!-- Card for Health Programs -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-lg border-success">
+                <div class="card-body">
+                    <h5 class="card-title text-success">Health Programs</h5>
+                    <a href="{% url 'program_list' %}" class="btn btn-outline-primary w-100 mb-2">📚 View Health Programs</a>
+                    <a href="{% url 'program_create' %}" class="btn btn-outline-success w-100">➕ Register New Programs</a>
+                </div>
+            </div>
         </div>
+
     </div>
 </div>
+
 {% endblock %}
