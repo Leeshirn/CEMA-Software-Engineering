@@ -23,6 +23,10 @@ This repository contains the backend implementation of the WellNest system. It f
 - **Authentication**: Django's built-in authentication system
 - **Security**: Best practices for secure data handling (e.g., HTTPS, data encryption)
 
+## Prototype
+
+![WellNest Prototype](health_system/health/images/Prototype.png)
+
 ## Getting Started
 
 ### Prerequisites
